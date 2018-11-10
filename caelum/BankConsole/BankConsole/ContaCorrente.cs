@@ -11,7 +11,7 @@ namespace BankConsole
         public double saldo;
         public int numero;
         public int agencia;
-        public string nome;
+        public Cliente titular;
 
         public void Depositar(double valor)
         {
