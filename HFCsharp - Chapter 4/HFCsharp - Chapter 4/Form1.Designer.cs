@@ -61,7 +61,7 @@
             this.labelToChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelToChange.Location = new System.Drawing.Point(12, 52);
             this.labelToChange.Name = "labelToChange";
-            this.labelToChange.Size = new System.Drawing.Size(474, 35);
+            this.labelToChange.Size = new System.Drawing.Size(460, 35);
             this.labelToChange.TabIndex = 2;
             this.labelToChange.Text = "Press the button to change my text";
             this.labelToChange.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
