@@ -8,21 +8,62 @@ namespace BankConsole
 {
     class ContaCorrente
     {
-        public double saldo;
-        public int numero;
-        public int agencia;
-        public Cliente titular;
+        private double _saldo;
+        private int _numero;
+        private int _agencia;
+
+        public static int TotalDeContasCriadas { get; private set; }
+
+        public int Numero { 
+            get
+            {
+                return _numero;
+            } 
+            set 
+            {
+                if (value > 0) {
+                    _numero = value;
+                }
+                return;
+            } 
+        }
+        public int Agencia { 
+            get
+            {
+                return _agencia;
+            }
+            set
+            {
+                if (value <= 0) {
+                    return;
+                }
+                _agencia = value;
+            }
+        }
+
+        public Cliente Titular { get; set; }
+
+        public ContaCorrente (int agencia, int numero) {
+            Agencia = agencia;
+            Numero = numero;
+            TotalDeContasCriadas++;
+        } 
+
+        public double GetSaldo ()
+        {
+            return this._saldo;
+        }
 
         public void Depositar(double valor)
         {
-            this.saldo += valor;
+            this._saldo += valor;
         }
 
         public bool Sacar(double valor)
         {
-            if(valor <= this.saldo)
+            if(valor <= this._saldo)
             {
-                this.saldo -= valor;
+                this._saldo -= valor;
                 return true;
             }
             return false;
@@ -30,7 +71,7 @@ namespace BankConsole
 
         public bool Transferir(double valor, ContaCorrente conta)
         {
-            if(this.saldo >= valor)
+            if(this._saldo >= valor)
             {
                 this.Sacar(valor);
                 conta.Depositar(valor);

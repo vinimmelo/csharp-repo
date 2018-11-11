@@ -10,15 +10,34 @@ namespace BankConsole
     {
         static void Main(string[] args)
         {
-            ContaCorrente vinicius = new ContaCorrente();
-            vinicius.titular = new Cliente();
-            vinicius.titular.nome = "Vinícius";
-            vinicius.titular.profissao = "Programador";
-            vinicius.saldo = 150;
+            ContaCorrente vinicius = new ContaCorrente(46725, 432594)
+            {
+                Titular = new Cliente
+                {
+                    nome = "Vinícius",
+                    profissao = "Programador"
+                }
+            };
 
-            Console.WriteLine(vinicius.titular.nome);
-            Console.WriteLine(vinicius.saldo);
-            Console.WriteLine(vinicius.titular.profissao);
+            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
+
+            ContaCorrente thais = new ContaCorrente(12345, 441123)
+            {
+                Titular = new Cliente
+                {
+                    nome = "Thais",
+                    profissao = "Barista"
+                }
+
+            };
+
+            vinicius.Depositar(150);
+
+            Console.WriteLine(vinicius.Titular.nome);
+            Console.WriteLine(vinicius.GetSaldo());
+            Console.WriteLine(vinicius.Titular.profissao);
+            Console.WriteLine(vinicius.Agencia);
+            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
 
             Console.ReadLine();
         }
