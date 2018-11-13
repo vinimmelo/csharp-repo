@@ -58,6 +58,8 @@ namespace BankConsole
 
             gerenciador.Registrar(carlos);
             gerenciador.Registrar(roberta);
+            Console.WriteLine(roberta.Salario);
+            Console.WriteLine(carlos.Salario);
 
             Console.WriteLine("Total de bonificações: " + gerenciador.GetTotalBonificacao());
 

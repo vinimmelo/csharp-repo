@@ -10,16 +10,11 @@ namespace BankConsole
     
     public class GerenciadorBonificacao
     {
-        private int _totalBonificacao;
+        private double _totalBonificacao;
 
         public void Registrar (Funcionario funcionaro)
         {
-            _totalBonificacao++;
-        }
-
-        public void Registrar (Diretor diretor)
-        {
-            _totalBonificacao++;
+            _totalBonificacao += funcionaro.GetBonificacao();
         }
 
         public double GetTotalBonificacao()
