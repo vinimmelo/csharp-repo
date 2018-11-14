@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BankConsole.Sistemas;
 
 namespace BankConsole.Funcionarios
 {
-    public class Diretor : FuncionarioAutenticavel
+    public class Auxiliar : Funcionario
     {
-        public Diretor (string cpf) : base(5000, cpf) { }
-
-        public override double GetBonificacao ()
+        public Auxiliar(string cpf) : base(2000, cpf)
         {
-            return Salario * 1.15;
         }
 
         public override void AumentarSalario()
         {
-            Salario *= 1.15;
+            Salario *= 1.1;
         }
 
+        public override double GetBonificacao()
+        {
+            return Salario * 0.2;
+        }
     }
 }

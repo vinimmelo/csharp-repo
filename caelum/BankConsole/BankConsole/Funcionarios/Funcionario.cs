@@ -6,15 +6,25 @@ using System.Threading.Tasks;
 
 namespace BankConsole.Funcionarios
 {
-    public class Funcionario
+    public abstract class Funcionario
     {
         public string Nome { get; set; }
         public string CPF { get; set; }
-        public double Salario { get; set; }
+        public double Salario { get; protected set; }
+        public static int TotalDeFuncionarios { get; private set; }
 
-        public virtual double GetBonificacao()
+        protected Funcionario (double salario, string cpf) 
         {
-            return Salario * 0.1;
+            Salario = salario;
+            CPF = cpf;
         }
+
+        protected Funcionario () {
+            TotalDeFuncionarios++;
+        }
+
+        public abstract double GetBonificacao();
+
+        public abstract void AumentarSalario();
     }
 }

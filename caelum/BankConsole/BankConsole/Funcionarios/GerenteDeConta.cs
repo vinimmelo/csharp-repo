@@ -7,19 +7,20 @@ using BankConsole.Sistemas;
 
 namespace BankConsole.Funcionarios
 {
-    public class Diretor : FuncionarioAutenticavel
+    public class GerenteDeConta : FuncionarioAutenticavel
     {
-        public Diretor (string cpf) : base(5000, cpf) { }
-
-        public override double GetBonificacao ()
+        public GerenteDeConta(string cpf) : base(4000, cpf)
         {
-            return Salario * 1.15;
         }
 
         public override void AumentarSalario()
         {
-            Salario *= 1.15;
+            Salario *= 1.05;
         }
 
+        public override double GetBonificacao()
+        {
+            return Salario * 0.25;
+        }
     }
 }

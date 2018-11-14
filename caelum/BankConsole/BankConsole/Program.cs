@@ -1,4 +1,5 @@
 ﻿using BankConsole.Funcionarios;
+using BankConsole.Sistemas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,15 +46,12 @@ namespace BankConsole
 
             GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
 
-            Funcionario carlos = new Funcionario();
+            Designer carlos = new Designer("424.864.588-24");
             carlos.Nome = "Carlos";
             carlos.CPF = "546.879.157-20";
-            carlos.Salario = 2000;
 
-            Diretor roberta = new Diretor();
+            Diretor roberta = new Diretor("454.658.148-34");
             roberta.Nome = "Roberta";
-            roberta.CPF = "454.658.148-3";
-            roberta.Salario = 5000;
 
 
             gerenciador.Registrar(carlos);
@@ -61,8 +59,14 @@ namespace BankConsole
             Console.WriteLine(roberta.Salario);
             Console.WriteLine(carlos.Salario);
 
+            roberta.Senha = "2345";
+            roberta.Autenticar("2345");
+
             Console.WriteLine("Total de bonificações: " + gerenciador.GetTotalBonificacao());
 
+            SistemaInterno sis = new SistemaInterno();
+            sis.Logar(roberta, "2345");
+                 
             Console.ReadLine();
         }
     }
