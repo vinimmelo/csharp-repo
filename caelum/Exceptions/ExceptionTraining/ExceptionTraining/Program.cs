@@ -14,7 +14,12 @@ namespace ExceptionTraining
             {
                 Metodo();
             }
-            catch (NullReferenceException er)
+            catch (DivideByZeroException er)
+            {
+                Console.WriteLine(er.Message);
+                Console.WriteLine(er.StackTrace);
+            }
+            catch (Exception er)
             {
                 Console.WriteLine(er.Message);
                 Console.WriteLine(er.StackTrace);
@@ -28,9 +33,16 @@ namespace ExceptionTraining
 
         public static int Dividir(int numero, int divisor)
         {
-            ContaCorrente cc = null;
-            cc.NullAcess = "Test";
-            return numero / divisor;
+            try
+            {
+                return numero / divisor;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exceção com número: " + numero + " e divisor= " +
+                    divisor);
+                throw;
+            }
         }
 
         static void Metodo()
