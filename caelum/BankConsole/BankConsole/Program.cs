@@ -34,6 +34,16 @@ namespace BankConsole
 
             };
 
+            try
+            {
+                ContaCorrente conta = new ContaCorrente(0, 0);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ParamName);
+            }
+
             vinicius.Depositar(150);
 
             Console.WriteLine(vinicius.Titular.nome);

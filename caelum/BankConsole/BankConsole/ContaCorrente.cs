@@ -9,41 +9,23 @@ namespace BankConsole
     class ContaCorrente
     {
         private double _saldo;
-        private int _numero;
-        private int _agencia;
 
         public static int TotalDeContasCriadas { get; private set; }
 
-        public int Numero { 
-            get
-            {
-                return _numero;
-            } 
-            set 
-            {
-                if (value > 0) {
-                    _numero = value;
-                }
-                return;
-            } 
-        }
-        public int Agencia { 
-            get
-            {
-                return _agencia;
-            }
-            set
-            {
-                if (value <= 0) {
-                    return;
-                }
-                _agencia = value;
-            }
-        }
+        public int Numero { get;}
+        public int Agencia { get;}
 
         public Cliente Titular { get; set; }
 
         public ContaCorrente (int agencia, int numero) {
+            if (numero <= 0)
+            {
+                throw new ArgumentException("Número menor ou igual a 0.", nameof(numero));
+            }
+            else if (agencia <= 0)
+            {
+                throw new ArgumentException("Agência menor ou igual a 0.", nameof(agencia));
+            }
             Agencia = agencia;
             Numero = numero;
             TotalDeContasCriadas++;
