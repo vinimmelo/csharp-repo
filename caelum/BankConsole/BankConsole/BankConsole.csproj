@@ -54,6 +54,7 @@
     <Compile Include="Funcionarios\Desenvolvedor.cs" />
     <Compile Include="Funcionarios\GerenteDeConta.cs" />
     <Compile Include="Funcionarios\Designer.cs" />
+    <Compile Include="SaldoInsuficienteException.cs" />
     <Compile Include="Sistemas\SistemaInterno.cs" />
     <Compile Include="Sistemas\IAutenticavel.cs" />
     <Compile Include="Funcionarios\ParceiroComercial.cs" />
@@ -62,9 +63,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sistemas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

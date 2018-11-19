@@ -76,6 +76,23 @@ namespace BankConsole
 
             SistemaInterno sis = new SistemaInterno();
             sis.Logar(roberta, "2345");
+            try
+            {
+                ContaCorrente emerson = new ContaCorrente(4535, 5596);
+                emerson.Depositar(300);
+                emerson.Transferir(200, vinicius);
+                emerson.Sacar(150);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            catch(SaldoInsuficienteException ex)
+            {
+                Console.WriteLine("Saldo insuficiente!\n" + ex.Message);
+            }
+            
                  
             Console.ReadLine();
         }

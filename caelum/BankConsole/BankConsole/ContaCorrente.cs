@@ -16,6 +16,7 @@ namespace BankConsole
         public int Agencia { get;}
 
         public Cliente Titular { get; set; }
+        private static int TaxaOperacao;
 
         public ContaCorrente (int agencia, int numero) {
             if (numero <= 0)
@@ -29,6 +30,7 @@ namespace BankConsole
             Agencia = agencia;
             Numero = numero;
             TotalDeContasCriadas++;
+            TaxaOperacao = 30 / TotalDeContasCriadas;
         } 
 
         public double GetSaldo ()
@@ -41,25 +43,30 @@ namespace BankConsole
             this._saldo += valor;
         }
 
-        public bool Sacar(double valor)
+        public void Sacar(double valor)
         {
-            if(valor <= this._saldo)
+            if (valor < 0)
             {
-                this._saldo -= valor;
-                return true;
+                throw new ArgumentException("Valor do saque não pode ser negativo.", nameof(valor));
             }
-            return false;
+
+            if(valor > _saldo)
+            {
+
+                throw new SaldoInsuficienteException(_saldo, valor);
+            }
+            _saldo -= valor;
         }
 
-        public bool Transferir(double valor, ContaCorrente conta)
+        public void Transferir(double valor, ContaCorrente conta)
         {
-            if(this._saldo >= valor)
+            if(_saldo >= valor)
             {
-                this.Sacar(valor);
+                Sacar(valor);
                 conta.Depositar(valor);
-                return true;
+                return;
             }
-            return false;
+            throw new ArgumentException("Valor inválido para a transferência", nameof(valor));
         }
     }
 }
