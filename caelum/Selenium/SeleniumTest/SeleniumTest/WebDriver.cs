@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.Windows.Forms;
+using OpenQA.Selenium.Firefox;
 
-namespace BackOffice_Cockpit_Resolution
+namespace SeleniumTest
 {
     class WebDriver
     {
@@ -17,7 +16,7 @@ namespace BackOffice_Cockpit_Resolution
         //Constructor
         public WebDriver ()
         {
-            driver = new ChromeDriver();
+            driver = new FirefoxDriver();
             driver.Navigate().GoToUrl("https://www.google.com");
             Thread.Sleep(1500);
         }
@@ -111,7 +110,7 @@ namespace BackOffice_Cockpit_Resolution
 
         private void MissElement()
         {
-            MessageBox.Show("Favor selecionar o elemento correto!");
+            Console.WriteLine("Favor selecionar o elemento correto!");
         }
 
         public void Sleep(int time)
