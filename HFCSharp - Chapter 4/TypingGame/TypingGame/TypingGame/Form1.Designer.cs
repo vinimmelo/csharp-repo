@@ -34,10 +34,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.correctLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.missedLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.totalLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.accuracyLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.difficultyLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.difficultyProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.totalLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +87,12 @@
             this.missedLabel.Size = new System.Drawing.Size(53, 17);
             this.missedLabel.Text = "Missed 0";
             // 
+            // totalLabel
+            // 
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(42, 17);
+            this.totalLabel.Text = "Total 0";
+            // 
             // accuracyLabel
             // 
             this.accuracyLabel.Name = "accuracyLabel";
@@ -96,7 +102,7 @@
             // difficultyLabel
             // 
             this.difficultyLabel.Name = "difficultyLabel";
-            this.difficultyLabel.Size = new System.Drawing.Size(524, 17);
+            this.difficultyLabel.Size = new System.Drawing.Size(493, 17);
             this.difficultyLabel.Spring = true;
             this.difficultyLabel.Text = "Difficulty";
             this.difficultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -106,12 +112,6 @@
             this.difficultyProgressBar.Maximum = 701;
             this.difficultyProgressBar.Name = "difficultyProgressBar";
             this.difficultyProgressBar.Size = new System.Drawing.Size(100, 16);
-            // 
-            // totalLabel
-            // 
-            this.totalLabel.Name = "totalLabel";
-            this.totalLabel.Size = new System.Drawing.Size(42, 17);
-            this.totalLabel.Text = "Total 0";
             // 
             // Form1
             // 
