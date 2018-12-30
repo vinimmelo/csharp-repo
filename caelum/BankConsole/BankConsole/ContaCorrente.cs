@@ -12,6 +12,10 @@ namespace BankConsole
 
         public static int TotalDeContasCriadas { get; private set; }
 
+        public int ContadorSaquesNaoPermitidos { get; private set; }
+
+        public int ContadorTransferenciasNaoPermitidas { get; private set; }
+
         public int Numero { get;}
         public int Agencia { get;}
 
@@ -52,7 +56,7 @@ namespace BankConsole
 
             if(valor > _saldo)
             {
-
+                ContadorSaquesNaoPermitidos++;
                 throw new SaldoInsuficienteException(_saldo, valor);
             }
             _saldo -= valor;
@@ -60,13 +64,17 @@ namespace BankConsole
 
         public void Transferir(double valor, ContaCorrente conta)
         {
-            if(_saldo >= valor)
+            try
             {
                 Sacar(valor);
                 conta.Depositar(valor);
-                return;
             }
-            throw new ArgumentException("Valor inválido para a transferência", nameof(valor));
+            catch (SaldoInsuficienteException ex)
+            {
+                ContadorTransferenciasNaoPermitidas++;
+                throw new OperacaoFinanceiraException("Operação não realizada.", ex);
+            }
+           
         }
     }
 }

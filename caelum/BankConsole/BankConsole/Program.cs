@@ -78,19 +78,25 @@ namespace BankConsole
             sis.Logar(roberta, "2345");
             try
             {
-                ContaCorrente emerson = new ContaCorrente(4535, 5596);
-                emerson.Depositar(300);
-                emerson.Transferir(200, vinicius);
-                emerson.Sacar(150);
+                ContaCorrente conta1 = new ContaCorrente(4564, 789684);
+                ContaCorrente conta2 = new ContaCorrente(7891, 456794);
+
+                conta1.Transferir(10000, conta2);
+                //conta1.Sacar(10000);
             }
-            catch (ArgumentException ex)
+            catch (OperacaoFinanceiraException e)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+
+                Console.WriteLine("Informações da INNER EXCEPTION (exceção interna):");
+
+                Console.WriteLine(e.InnerException.Message);
+                Console.WriteLine(e.InnerException.StackTrace);
             }
-            catch(SaldoInsuficienteException ex)
+            catch (SaldoInsuficienteException ex)
             {
-                Console.WriteLine("Saldo insuficiente!\n" + ex.Message);
+                Console.WriteLine("Saldo insuficiente!\t" + ex.Message);
             }
             
                  
