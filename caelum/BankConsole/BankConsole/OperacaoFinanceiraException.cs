@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankConsole
+namespace ByteBank
 {
-    class OperacaoFinanceiraException : Exception
+    public class OperacaoFinanceiraException : Exception
     {
-        public double Saldo { get; }
-        public double ValorSaque { get; }
-
         public OperacaoFinanceiraException()
         {
 
@@ -27,6 +24,5 @@ namespace BankConsole
         {
 
         }
-
     }
 }

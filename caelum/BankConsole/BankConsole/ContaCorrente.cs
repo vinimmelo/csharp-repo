@@ -4,77 +4,98 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankConsole
+namespace ByteBank
 {
-    class ContaCorrente
+    public class ContaCorrente
     {
-        private double _saldo;
+        private static int TaxaOperacao;
 
         public static int TotalDeContasCriadas { get; private set; }
 
-        public int ContadorSaquesNaoPermitidos { get; private set; }
+        public Cliente Titular { get; set; }
 
+        public int ContadorSaquesNaoPermitidos { get; private set; }
         public int ContadorTransferenciasNaoPermitidas { get; private set; }
 
-        public int Numero { get;}
-        public int Agencia { get;}
+        public int Numero { get; }
+        public int Agencia { get; }
 
-        public Cliente Titular { get; set; }
-        private static int TaxaOperacao;
-
-        public ContaCorrente (int agencia, int numero) {
-            if (numero <= 0)
-            {
-                throw new ArgumentException("Número menor ou igual a 0.", nameof(numero));
-            }
-            else if (agencia <= 0)
-            {
-                throw new ArgumentException("Agência menor ou igual a 0.", nameof(agencia));
-            }
-            Agencia = agencia;
-            Numero = numero;
-            TotalDeContasCriadas++;
-            TaxaOperacao = 30 / TotalDeContasCriadas;
-        } 
-
-        public double GetSaldo ()
+        private double _saldo = 100;
+        public double Saldo
         {
-            return this._saldo;
+            get
+            {
+                return _saldo;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    return;
+                }
+
+                _saldo = value;
+            }
         }
 
-        public void Depositar(double valor)
+        public ContaCorrente(int agencia, int numero)
         {
-            this._saldo += valor;
+            if (numero <= 0)
+            {
+                throw new ArgumentException("O argumento agencia deve ser maior que 0.", nameof(agencia));
+            }
+
+            if(numero <= 0)
+            {
+                throw new ArgumentException("O argumento numero deve ser maior que 0.", nameof(numero));
+            }
+
+            Agencia = agencia;
+            Numero = numero;
+
+            TotalDeContasCriadas++;
+            TaxaOperacao = 30 / TotalDeContasCriadas;
         }
 
         public void Sacar(double valor)
         {
             if (valor < 0)
             {
-                throw new ArgumentException("Valor do saque não pode ser negativo.", nameof(valor));
+                throw new ArgumentException("Valor inválido para o saque.", nameof(valor));
             }
 
-            if(valor > _saldo)
+            if (_saldo < valor)
             {
                 ContadorSaquesNaoPermitidos++;
-                throw new SaldoInsuficienteException(_saldo, valor);
+                throw new SaldoInsuficienteException(Saldo, valor);
             }
+
             _saldo -= valor;
         }
 
-        public void Transferir(double valor, ContaCorrente conta)
+        public void Depositar(double valor)
         {
+            _saldo += valor;
+        }
+
+        public void Transferir(double valor, ContaCorrente contaDestino)
+        {
+            if (valor < 0)
+            {
+                throw new ArgumentException("Valor inválido para a transferência.", nameof(valor));
+            }
+            
             try
             {
                 Sacar(valor);
-                conta.Depositar(valor);
             }
-            catch (SaldoInsuficienteException ex)
+            catch(SaldoInsuficienteException ex)
             {
                 ContadorTransferenciasNaoPermitidas++;
                 throw new OperacaoFinanceiraException("Operação não realizada.", ex);
             }
-           
+
+            contaDestino.Depositar(valor);
         }
     }
 }
