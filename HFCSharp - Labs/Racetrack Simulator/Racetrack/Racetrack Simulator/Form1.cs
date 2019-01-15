@@ -16,5 +16,17 @@ namespace Racetrack_Simulator
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Greyhound GreyhoundArray[0] = new Greyhound()
+            {
+                MyPictureBox = pictureBox1,
+                StartingPosition = pictureBox1.Left,
+                RacetrackLength = racetrackPictureBox.Width - pictureBox1.Width,
+                Randomizer = MyRandomizer
+            };
+
+        }
     }
 }
